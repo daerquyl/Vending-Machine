@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "QB2QoIBBUGksJeGFzJKQYtVRPQwsZgZQnkfIJgCmMKM=",
+  "Source": "Vending.Machine.Web.Api",
+  "BasePath": "_content/Vending.Machine.Web.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

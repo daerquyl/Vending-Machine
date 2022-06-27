@@ -1,0 +1,12 @@
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.deps.json
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.csproj.AssemblyReference.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.AssemblyInfo.cs
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\refint\Vending.Machine.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\ref\Vending.Machine.dll

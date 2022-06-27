@@ -1,0 +1,12 @@
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.Domain.deps.json
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.Domain.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\bin\Debug\net6.0\Vending.Machine.Domain.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.csproj.AssemblyReference.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.AssemblyInfo.cs
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\refint\Vending.Machine.Domain.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\Vending.Machine.Domain.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\VendingMachine\obj\Debug\net6.0\ref\Vending.Machine.Domain.dll

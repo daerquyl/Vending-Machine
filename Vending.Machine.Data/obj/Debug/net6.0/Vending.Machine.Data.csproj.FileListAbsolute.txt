@@ -1,0 +1,17 @@
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.csproj.AssemblyReference.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.AssemblyInfoInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.AssemblyInfo.cs
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.csproj.CoreCompileInputs.cache
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Data.deps.json
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Data.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Data.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Domain.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Domain.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.csproj.CopyComplete
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\refint\Vending.Machine.Data.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.pdb
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\ref\Vending.Machine.Data.dll
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\bin\Debug\net6.0\Vending.Machine.Data.runtimeconfig.json
+C:\Users\Hp\Documents\VendingMachine\VendingMachine\Vending.Machine.Data\obj\Debug\net6.0\Vending.Machine.Data.genruntimeconfig.cache
