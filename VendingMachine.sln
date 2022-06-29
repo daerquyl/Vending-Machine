@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vending.Machine.Domain", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VendingMachineTest", "VendingMachineTest\VendingMachineTest.csproj", "{706C65A8-2D0A-4DD2-9807-B39F5F3FB157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vending.Machine.Data", "Vending.Machine.Data\Vending.Machine.Data.csproj", "{34F8465E-156D-4900-BB36-50FA8FD38D6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vending.Machine.Data", "Vending.Machine.Data\Vending.Machine.Data.csproj", "{34F8465E-156D-4900-BB36-50FA8FD38D6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vending.Machine.Web.Api", "Vending.Machine.Web.Api\Vending.Machine.Web.Api.csproj", "{F2BD7D2B-A8DB-467E-BF81-0EC767CBA58F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vending.Machine.Web.Api", "Vending.Machine.Web.Api\Vending.Machine.Web.Api.csproj", "{F2BD7D2B-A8DB-467E-BF81-0EC767CBA58F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{527F7EDC-2273-4766-BF58-604AA78ECE0A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

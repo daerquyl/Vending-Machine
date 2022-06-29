@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Vending.Machine.Domain.Core;
 using Vending.Machine.Domain.Core.Repository;
 using Vending.Machine.Domain.UserAccountManagement.Repository;
+using Vending.Machine.Web.Api.ViewModels;
 
 namespace Vending.Machine.Web.Api.Controllers
 {
@@ -22,14 +24,29 @@ namespace Vending.Machine.Web.Api.Controllers
             _userRepository = userRepository;
         }
 
+        // Get : /api/VendingMachine
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<VendingMachineDto>> Get()
+        {
+            var buyerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var vendingMachineDto = VendingMachineDto.ForAccount(
+                    _repository.GetVendingMachine(),
+                    buyerId
+                );
+            return Ok(vendingMachineDto);
+        }
+
         // Post : /api/VendingMachine/Deposit
         [HttpPost("Deposit")]
-        public async Task<IActionResult> MakeDeposit(Money money)
+        [Authorize(Roles = "Buyer")]
+        public async Task<ActionResult<DepositDto>> MakeDeposit(MoneyDto moneyDto)
         {
             var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var balance = 0m;
             try
             {
-                _repository.GetVendingMachine().MakeDeposit(accountId, money);
+                balance = _repository.GetVendingMachine().MakeDeposit(accountId, moneyDto.ToMoney());
                 await _repository.SaveChanges();
                 var account = _repository.GetVendingMachine().GetAccount(accountId);
                 await _userRepository.UpdateUserDeposit(accountId, account.Deposit);//Should be Handle using Domain Event
@@ -39,12 +56,14 @@ namespace Vending.Machine.Web.Api.Controllers
             {
                 return Forbid(AccountNotFound);
             }
-            return Ok();
+            return Ok(new DepositDto(balance));
         }
 
         // Post : /api/VendingMachine/Buy
         [HttpPost("Buy")]
-        public async Task<ActionResult<Transaction>> BuyProduct(string productId, int amountOfProducts)
+        [Authorize(Roles = "Buyer")]
+
+        public async Task<ActionResult<TransactionDto>> BuyProduct(string productId, int amountOfProducts)
         {
             Transaction transaction;
             var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -58,12 +77,14 @@ namespace Vending.Machine.Web.Api.Controllers
             {
                 return Forbid(AccountOrDepositNotFound);
             }
-            return Ok(transaction);
+            return Ok(TransactionDto.FromTransaction(transaction));
         }
 
         // Post : /api/VendingMachine/Deposit/Reset
         [HttpPost("Deposit/Reset")]
-        public async Task<IActionResult> ResetDeposit()
+        [Authorize(Roles = "Buyer")]
+
+        public async Task<ActionResult<DepositDto>> ResetDeposit()
         {
             var accountId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             try
@@ -77,7 +98,7 @@ namespace Vending.Machine.Web.Api.Controllers
             {
                 return Forbid(AccountNotFound);
             }
-            return Ok();
+            return Ok(new DepositDto(0m));
         }
     }
 }

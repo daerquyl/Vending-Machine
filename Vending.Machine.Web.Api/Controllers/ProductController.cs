@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Vending.Machine.Domain.Core;
 using Vending.Machine.Domain.Core.Repository;
 using Vending.Machine.Web.Api.ViewModels;
@@ -37,23 +38,26 @@ namespace Vending.Machine.Web.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProduct(ProductDto newProduct)
         {
-            var product = newProduct.ToProduct();
-            await _repository.CreateProduct(product);
-            return CreatedAtAction("GetUser", new { id = product.Id }, product);
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            try {
+                var product = newProduct.ToProduct(sellerId);
+                await _repository.CreateProduct(product);
+                return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            }catch(InvalidOperationException ex)
+            {
+                return Problem(ex.Message, statusCode: 403);
+            }
         }
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(string id, Product product)
+        public async Task<IActionResult> UpdateProduct(string id, ProductDto productDto)
         {
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
-
             try
             {
-                _repository.UpdateProduct(product);
+                var product = productDto.ToProduct();
+                product.Id = id;
+                await _repository.UpdateProduct(product);
             }
             catch when (!ProductExists(id))
             {

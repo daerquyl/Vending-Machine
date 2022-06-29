@@ -19,10 +19,13 @@ namespace Vending.Machine.Data
             _context = context;
             if (_context.VendingMachines.Count() == 0)
             {
-                _context.Add(new VendingMachine());
-               SaveChanges();
+               _context.Add(new VendingMachine());
+               _context.SaveChanges();
             }
-            _vendingMachine = _context.VendingMachines.First();
+            _vendingMachine = _context.VendingMachines
+                .Include(v => v.Accounts)
+                .Include(v => v.Products)
+                .First();
         }
 
         public async Task<Product?> CreateProduct(Product product)
@@ -41,8 +44,19 @@ namespace Vending.Machine.Data
             return product;
         }
 
-        public async Task UpdateProduct(Product product)
+        public async Task UpdateProduct(Product productUpdate)
         {
+            var product = _vendingMachine.Products
+                .First(product => product.Id == productUpdate.Id);
+            if(product == null)
+            {
+                return;
+            }
+            product.ProductName = productUpdate.ProductName ?? product.ProductName;
+            product.Cost = productUpdate.Cost != 0 
+                ? productUpdate.Cost
+                : product.Cost;
+
             _context.Entry(product).State = EntityState.Modified;
             await SaveChanges();
         }

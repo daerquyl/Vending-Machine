@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vending.Machine.Data;
 
@@ -10,9 +11,10 @@ using Vending.Machine.Data;
 namespace Vending.Machine.Data.Migrations
 {
     [DbContext(typeof(VendingMachineContext))]
-    partial class VendingMachineContextModelSnapshot : ModelSnapshot
+    [Migration("20220628195337_Role_Enum_As_String")]
+    partial class Role_Enum_As_String
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

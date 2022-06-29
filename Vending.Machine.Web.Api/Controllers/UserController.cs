@@ -1,17 +1,9 @@
 ﻿using System.Text;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Vending.Machine.Domain.UserAccountManagement;
 using Vending.Machine.Domain.UserAccountManagement.Repository;
 using Vending.Machine.Web.Api.ViewModels;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using Vending.Machine.Domain.Core.Repository;
 
 namespace Vending.Machine.Web.Api.Controllers
@@ -26,13 +18,11 @@ namespace Vending.Machine.Web.Api.Controllers
 
         private IUserRepository _repository;
         private readonly IVendingMachineRepository _vendingMachineRepository;
-        private readonly IConfiguration _configuration;
 
         public UserController(IUserRepository repository, IVendingMachineRepository vendingMachineRepository, IConfiguration configuration)
         {
             _repository = repository;
             _vendingMachineRepository = vendingMachineRepository;
-            _configuration = configuration;
         }
 
         // GET: api/User/5
@@ -106,49 +96,6 @@ namespace Vending.Machine.Web.Api.Controllers
             return NoContent();
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserLoginDto login)
-        {
-            var user = await _repository.GetUserByUsername(login.Username);
-            if (user == null)
-            {
-                return BadRequest(UserNotFound);
-            }
-
-            if(!VerifyPasswordHash(
-                login.Password,
-                Encoding.UTF8.GetBytes(user.Password),
-                Encoding.UTF8.GetBytes(user.PasswordSalt)))
-            {
-                return BadRequest("Wrong password");
-            }
-
-            string token = CreateToken(user);
-            return Ok(token);
-        }
-
-        private string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value));
-            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-            
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(30),
-                signingCredentials: credentials);
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token); 
-            
-            return jwt;
-        }
-
         private bool UserExists(string search)
         {
             return _repository.Users.Any(e => e.Id == search || e.Username == search);
@@ -156,22 +103,12 @@ namespace Vending.Machine.Web.Api.Controllers
 
         private void CreatePasswordHash(string password, out string passwordHash, out string passwordSalt)
         {
-            using(var hmac = new HMACSHA512())
+            using (var hmac = new HMACSHA512())
             {
-                passwordSalt = Encoding.UTF8.GetString(hmac.Key);
-                passwordHash = Encoding.UTF8.GetString(
-                    hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
-
+                passwordSalt = Convert.ToBase64String(hmac.Key);
+                passwordHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
             }
         }
 
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return computedHash.SequenceEqual(passwordHash);
-            }
-        }
     }
 }

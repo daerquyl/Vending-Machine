@@ -159,7 +159,7 @@ namespace Vending.Machine.Domain.Core
             return product;
         }
 
-        public void MakeDeposit(string accountId, Money money)
+        public decimal MakeDeposit(string accountId, Money money)
         {
             var account = GetAccount(accountId);
             if (account == null)
@@ -168,6 +168,8 @@ namespace Vending.Machine.Domain.Core
             }
             account.MakeDeposit(money);
             Money = Money.Add(money);
+
+            return account.Deposit;
         }
 
         public void CancelDeposit(string accountId)

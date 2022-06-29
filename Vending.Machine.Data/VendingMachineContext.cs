@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vending.Machine.Domain.UserAccountManagement;
 using Vending.Machine.Domain.Core;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Vending.Machine.Data
 {
@@ -33,6 +34,12 @@ namespace Vending.Machine.Data
                 .OwnsOne(v => v.Money)
                 .Property(m => m.Value)
                 .HasField("_value");
+
+            var converter = new EnumToStringConverter<UserRole>();
+            modelBuilder
+                .Entity<User>()
+                .Property(e => e.Role)
+                .HasConversion(converter);
         }
     }
 }
