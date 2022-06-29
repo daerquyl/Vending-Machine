@@ -53,9 +53,16 @@ namespace Vending.Machine.Web.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(string id, ProductDto productDto)
         {
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var oldProduct = _repository.GetProduct(id);
+            if (sellerId != oldProduct.SellerId)
+            {
+                return BadRequest();
+            }
             try
             {
                 var product = productDto.ToProduct();
+                
                 product.Id = id;
                 await _repository.UpdateProduct(product);
             }
@@ -71,6 +78,13 @@ namespace Vending.Machine.Web.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var oldProduct = _repository.GetProduct(id);
+            if (sellerId != oldProduct.SellerId)
+            {
+                return BadRequest();
+            }
+
             var product = await _repository.RemoveProduct(id);
             if (product == null)
             {

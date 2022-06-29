@@ -10,9 +10,15 @@ namespace Vending.Machine.Data
         public DbSet<VendingMachine> VendingMachines { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public VendingMachineContext(DbContextOptions<VendingMachineContext> options):base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=VendingMachine");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=VendingMachine");
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
