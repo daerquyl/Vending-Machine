@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Web;
+using Vending.Machine.Data;
 using Vending.Machine.Domain.UserAccountManagement;
 using Vending.Machine.Web.Api.ViewModels;
 
@@ -38,21 +40,21 @@ namespace VendingMachineTest
             var responseString = await response.Content.ReadAsStringAsync();
             var balance = JsonConvert.DeserializeObject<DepositDto>(responseString);
 
-            var expected = 0.1m;
+            var expected = 0.6m;
             balance.Deposit.Should().Be(expected);
         }
 
         [Fact]
         public async Task Buy_Test()
         {
-            var requestContent = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("productId", "productId"),
-                new KeyValuePair<string, string>("amountOfProducts","1")
-            });
+            var productId = "productId";
+            var amountOfProducts = 1;
+
+            var query = $"/api/VendingMachine/Buy?productId={productId}&amountOfProducts={amountOfProducts}";
+            
             var authToken = await GetLoginToken(UserRole.Buyer);
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",authToken);
-            var response = await _httpClient.PostAsync("/api/VendingMachine/Buy", requestContent);
+            var response = await _httpClient.PostAsync(query, null);
 
             response.EnsureSuccessStatusCode();
         }
